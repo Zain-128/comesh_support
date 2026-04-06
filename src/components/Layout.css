@@ -1,0 +1,127 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(28, 32, 59, 0.82);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+  color: var(--color-on-primary);
+}
+
+.logo:hover {
+  color: var(--color-on-primary);
+}
+
+.logo__mark {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary-light));
+  box-shadow: 0 0 16px rgba(197, 24, 212, 0.55);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+}
+
+.nav__link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+  padding: 0.35rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.nav__link:hover {
+  color: var(--color-primary-extra);
+}
+
+.nav__link--active {
+  color: var(--color-primary-light);
+  border-bottom-color: var(--color-primary);
+}
+
+.header__accent {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-secondary) 15%,
+    var(--color-primary) 50%,
+    var(--color-primary-light) 85%,
+    transparent
+  );
+  opacity: 0.85;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 3rem;
+}
+
+.page-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  margin: 0 0 0.5rem;
+  background: linear-gradient(120deg, var(--color-on-primary), var(--color-primary-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.page-lead {
+  font-size: 1.05rem;
+  color: var(--color-text-light);
+  margin: 0 0 2rem;
+  max-width: 52ch;
+}
+
+.footer {
+  margin-top: auto;
+  padding: 1.5rem 1.25rem 2rem;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.footer__note {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+@media (max-width: 520px) {
+  .nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,22 @@
+/**
+ * Comesh app theme — aligned with comesh_frontend_updated/src/constants/colors.js
+ */
+:root {
+  --color-primary: #c518d4;
+  --color-primary-light: #b445ff;
+  --color-primary-extra: #f4e2ff;
+  --color-on-primary: #fff;
+  --color-accent: #0027ff;
+  --color-secondary: #0827cd;
+  --color-secondary-light: #6642ff;
+  --color-text-dark: #1d2733;
+  --color-text-light: #999b9f;
+  --color-blue: #218de2;
+  --color-bg: #1c203b;
+  --color-bg-elevated: #252a4a;
+  --color-bg-card: rgba(36, 42, 74, 0.85);
+  --color-border: rgba(197, 24, 212, 0.25);
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --radius-lg: 16px;
+  --shadow-glow: 0 0 40px rgba(197, 24, 212, 0.12);
+}
