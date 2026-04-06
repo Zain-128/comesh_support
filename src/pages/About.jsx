@@ -6,12 +6,14 @@ export default function About() {
   const rootRef = usePageTextReveal();
 
   return (
-    <div ref={rootRef}>
-      <h1 className="page-title gsap-text">About us</h1>
-      <p className="page-lead gsap-text">
-        Comesh connects creators and collaborators — built with the same energy as
-        our mobile experience: bold, clear, and human.
-      </p>
+    <div ref={rootRef} className="page page--about">
+      <header className="page-header">
+        <h1 className="page-title gsap-text">About us</h1>
+        <p className="page-lead gsap-text">
+          Comesh connects creators and collaborators — built with the same energy as
+          our mobile experience: bold, clear, and human.
+        </p>
+      </header>
 
       <section className="content-block gsap-text">
         <h2>Our mission</h2>

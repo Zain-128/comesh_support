@@ -12,7 +12,7 @@ import "./Layout.css";
 const nav = [
   { to: "/about", label: "About us" },
   { to: "/contact", label: "Contact us" },
-  { to: "/terms", label: "Terms & conditions" },
+  { to: "/terms", label: "Terms of use" },
   { to: "/privacy", label: "Privacy policy" },
 ];
 
@@ -34,7 +34,10 @@ export default function Layout() {
               animate="visible"
               aria-hidden
             />
-            <span className="logo__text">Comesh</span>
+            <span className="logo__textblock">
+              <span className="logo__text">Comesh</span>
+              <span className="logo__tagline">Legal &amp; information</span>
+            </span>
           </NavLink>
           <motion.nav
             className="nav"
@@ -76,9 +79,17 @@ export default function Layout() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.35, duration: 0.5 }}
       >
-        <p className="footer__note">
-          © {new Date().getFullYear()} Comesh. All rights reserved.
-        </p>
+        <div className="footer__inner">
+          <nav className="footer__nav" aria-label="Legal shortcuts">
+            <NavLink to="/terms">Terms of use</NavLink>
+            <NavLink to="/privacy">Privacy policy</NavLink>
+            <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/about">About</NavLink>
+          </nav>
+          <p className="footer__note">
+            © {new Date().getFullYear()} Comesh. All rights reserved.
+          </p>
+        </div>
       </motion.footer>
     </div>
   );

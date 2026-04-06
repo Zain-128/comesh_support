@@ -52,12 +52,14 @@ export default function Contact() {
   }
 
   return (
-    <div ref={rootRef}>
-      <h1 className="page-title gsap-text">Contact us</h1>
-      <p className="page-lead gsap-text">
-        Send us a message — we read every submission and will get back when
-        appropriate.
-      </p>
+    <div ref={rootRef} className="page page--contact">
+      <header className="page-header">
+        <h1 className="page-title gsap-text">Contact us</h1>
+        <p className="page-lead gsap-text">
+          For legal, privacy, or general enquiries, send a message below. We aim to respond
+          where appropriate.
+        </p>
+      </header>
 
       <AnimatePresence mode="popLayout">
         {status === "success" && (

@@ -41,6 +41,17 @@
   box-shadow: 0 0 0 3px rgba(197, 24, 212, 0.15);
 }
 
+.contact-input:focus-visible {
+  outline: none;
+  border-color: rgba(197, 24, 212, 0.65);
+  box-shadow: 0 0 0 3px rgba(197, 24, 212, 0.2);
+}
+
+.contact-submit:focus-visible {
+  outline: 2px solid rgba(197, 24, 212, 0.6);
+  outline-offset: 3px;
+}
+
 .contact-textarea {
   resize: vertical;
   min-height: 140px;

@@ -4,13 +4,15 @@ export default function Privacy() {
   const rootRef = usePageTextReveal();
 
   return (
-    <div ref={rootRef}>
-      <h1 className="page-title gsap-text">Privacy policy</h1>
-      <p className="last-updated gsap-text">Last updated: April 1, 2026</p>
-      <p className="page-lead gsap-text">
-        This policy describes how Comesh collects, uses, and shares information. Replace
-        with counsel-approved text that matches your actual data practices.
-      </p>
+    <div ref={rootRef} className="legal-page">
+      <header className="page-header">
+        <h1 className="page-title gsap-text">Privacy policy</h1>
+        <p className="last-updated gsap-text">Last updated: 1 April 2026</p>
+        <p className="page-lead gsap-text">
+          This policy describes how Comesh collects, uses, and shares information. Replace
+          with counsel-approved text that matches your actual data practices.
+        </p>
+      </header>
 
       <section className="content-block gsap-text">
         <h2>1. Who we are</h2>

@@ -5,10 +5,11 @@
 }
 
 .offer-flow__heading {
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   margin: 0 0 1rem;
-  color: var(--color-primary-light);
+  color: #e8e9ed;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* —— Desktop: one grid = 3 cards + full-width rail row —— */

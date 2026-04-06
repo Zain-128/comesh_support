@@ -4,13 +4,15 @@ export default function Terms() {
   const rootRef = usePageTextReveal();
 
   return (
-    <div ref={rootRef}>
-      <h1 className="page-title gsap-text">Terms &amp; conditions</h1>
-      <p className="last-updated gsap-text">Last updated: April 1, 2026</p>
-      <p className="page-lead gsap-text">
-        These terms govern your use of Comesh. Please read them carefully. This is
-        placeholder text — have it reviewed by legal counsel before publication.
-      </p>
+    <div ref={rootRef} className="legal-page">
+      <header className="page-header">
+        <h1 className="page-title gsap-text">Terms of use</h1>
+        <p className="last-updated gsap-text">Last updated: 1 April 2026</p>
+        <p className="page-lead gsap-text">
+          These terms govern your use of Comesh. Please read them carefully. This is
+          placeholder text — have it reviewed by legal counsel before publication.
+        </p>
+      </header>
 
       <section className="content-block gsap-text">
         <h2>1. Agreement</h2>
