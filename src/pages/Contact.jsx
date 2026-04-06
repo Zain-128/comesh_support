@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { getApiBaseUrl } from "../api/config";
-import { easeOut, fadeUpChild, staggerParent } from "../motion/variants";
+import { easeOut } from "../motion/variants";
+import { usePageTextReveal } from "../hooks/usePageTextReveal";
 import "./Contact.css";
 
 const bannerMotion = {
@@ -12,6 +13,7 @@ const bannerMotion = {
 };
 
 export default function Contact() {
+  const rootRef = usePageTextReveal();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -50,18 +52,12 @@ export default function Contact() {
   }
 
   return (
-    <motion.div
-      variants={staggerParent}
-      initial="hidden"
-      animate="visible"
-    >
-      <motion.h1 variants={fadeUpChild} className="page-title">
-        Contact us
-      </motion.h1>
-      <motion.p variants={fadeUpChild} className="page-lead">
+    <div ref={rootRef}>
+      <h1 className="page-title gsap-text">Contact us</h1>
+      <p className="page-lead gsap-text">
         Send us a message — we read every submission and will get back when
         appropriate.
-      </motion.p>
+      </p>
 
       <AnimatePresence mode="popLayout">
         {status === "success" && (
@@ -86,9 +82,8 @@ export default function Contact() {
         )}
       </AnimatePresence>
 
-      <motion.form
-        variants={fadeUpChild}
-        className="contact-form content-block"
+      <form
+        className="contact-form content-block gsap-text"
         onSubmit={handleSubmit}
       >
         <label className="contact-field">
@@ -143,16 +138,10 @@ export default function Contact() {
             placeholder="How can we help?"
           />
         </label>
-        <motion.button
-          type="submit"
-          className="contact-submit"
-          disabled={status === "loading"}
-          whileHover={status === "loading" ? undefined : { scale: 1.03 }}
-          whileTap={status === "loading" ? undefined : { scale: 0.98 }}
-        >
+        <button type="submit" className="contact-submit" disabled={status === "loading"}>
           {status === "loading" ? "Sending…" : "Send message"}
-        </motion.button>
-      </motion.form>
-    </motion.div>
+        </button>
+      </form>
+    </div>
   );
 }

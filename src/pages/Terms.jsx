@@ -1,25 +1,18 @@
-import { motion } from "framer-motion";
-import { fadeUpChild, staggerParent } from "../motion/variants";
+import { usePageTextReveal } from "../hooks/usePageTextReveal";
 
 export default function Terms() {
+  const rootRef = usePageTextReveal();
+
   return (
-    <motion.div
-      variants={staggerParent}
-      initial="hidden"
-      animate="visible"
-    >
-      <motion.h1 variants={fadeUpChild} className="page-title">
-        Terms &amp; conditions
-      </motion.h1>
-      <motion.p variants={fadeUpChild} className="last-updated">
-        Last updated: April 1, 2026
-      </motion.p>
-      <motion.p variants={fadeUpChild} className="page-lead">
+    <div ref={rootRef}>
+      <h1 className="page-title gsap-text">Terms &amp; conditions</h1>
+      <p className="last-updated gsap-text">Last updated: April 1, 2026</p>
+      <p className="page-lead gsap-text">
         These terms govern your use of Comesh. Please read them carefully. This is
         placeholder text — have it reviewed by legal counsel before publication.
-      </motion.p>
+      </p>
 
-      <motion.section variants={fadeUpChild} className="content-block">
+      <section className="content-block gsap-text">
         <h2>1. Agreement</h2>
         <p>
           By accessing or using Comesh (&quot;Service&quot;), you agree to be bound by
@@ -91,7 +84,7 @@ export default function Terms() {
           For questions about these Terms, contact us through the channels listed in the
           app or on your official website.
         </p>
-      </motion.section>
-    </motion.div>
+      </section>
+    </div>
   );
 }

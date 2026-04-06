@@ -60,6 +60,10 @@ li {
   margin-bottom: 0.5rem;
 }
 
+.offer-section {
+  margin-bottom: 1.5rem;
+}
+
 .last-updated {
   font-size: 0.875rem;
   color: var(--color-text-light);

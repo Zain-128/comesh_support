@@ -1,0 +1,310 @@
+/* Shared gap — cards + rail use same grid so mover lines up with column centers */
+.offer-flow {
+  --offer-gap: 1rem;
+  margin-top: 0.25rem;
+}
+
+.offer-flow__heading {
+  font-size: 1.25rem;
+  margin: 0 0 1rem;
+  color: var(--color-primary-light);
+  font-weight: 700;
+}
+
+/* —— Desktop: one grid = 3 cards + full-width rail row —— */
+.offer-flow__horizontal {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .offer-flow__horizontal {
+    display: block;
+  }
+
+  .offer-flow__vertical {
+    display: none;
+  }
+}
+
+.offer-flow__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--offer-gap);
+  grid-template-rows: auto auto;
+}
+
+.offer-flow__grid > .offer-card {
+  grid-row: 1;
+}
+
+.offer-flow__rail {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  position: relative;
+  height: 22px;
+  margin-top: 0.25rem;
+}
+
+/* Track spans full grid width — same as cards row */
+.offer-flow__track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(8, 39, 205, 0.25),
+    rgba(197, 24, 212, 0.4),
+    rgba(180, 69, 255, 0.35)
+  );
+  opacity: 0.9;
+}
+
+/*
+ * Column centers with gap g between columns:
+ * c1 = (100% - 2g) / 6
+ * c2 = 50%
+ * c3 = (250% + g) / 3   [derived: 2.5 * colWidth + 2g]
+ */
+.offer-flow__mover {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 50%;
+  margin-top: -6px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #e8a8ff,
+    var(--color-primary) 45%,
+    var(--color-secondary) 100%
+  );
+  box-shadow:
+    0 0 10px rgba(197, 24, 212, 0.9),
+    0 0 20px rgba(100, 66, 255, 0.35);
+  left: calc((100% - 2 * var(--offer-gap)) / 6);
+  animation: offerMoverH 7s ease-in-out infinite;
+  will-change: left;
+}
+
+@keyframes offerMoverH {
+  0%,
+  10% {
+    left: calc((100% - 2 * var(--offer-gap)) / 6);
+  }
+  30%,
+  38% {
+    left: 50%;
+  }
+  58%,
+  66% {
+    left: calc((250% + var(--offer-gap)) / 3);
+  }
+  86%,
+  94% {
+    left: 50%;
+  }
+  100% {
+    left: calc((100% - 2 * var(--offer-gap)) / 6);
+  }
+}
+
+/* —— Card (calmer, less “busy”) —— */
+.offer-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 7.75rem;
+  padding: 0;
+  border-radius: var(--radius-lg);
+  background: rgba(36, 42, 74, 0.55);
+  border: 1px solid rgba(197, 24, 212, 0.18);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Thin left accent — no heavy glow */
+.offer-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(180, 69, 255, 0.5),
+    var(--color-primary) 50%,
+    rgba(8, 39, 205, 0.45)
+  );
+  opacity: 0.85;
+}
+
+.offer-card__inner {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 1rem 1.1rem 1.1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Step inline with title — no dark floating badge */
+.offer-card__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  margin-right: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-primary-light);
+  background: rgba(197, 24, 212, 0.12);
+  border: 1px solid rgba(197, 24, 212, 0.28);
+  border-radius: 6px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.offer-card__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: #f0f2f6;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .offer-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(197, 24, 212, 0.32);
+    box-shadow:
+      0 8px 28px rgba(0, 0, 0, 0.28),
+      0 0 0 1px rgba(197, 24, 212, 0.08) inset;
+  }
+}
+
+.offer-card__text {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* —— Vertical (mobile) —— */
+.offer-flow__vertical {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  grid-template-rows: repeat(3, auto);
+  gap: 0.75rem 0.875rem;
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .offer-flow__vertical {
+    display: none;
+  }
+}
+
+.offer-flow__spine {
+  position: relative;
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  min-height: 100px;
+}
+
+.offer-flow__vertical .offer-card {
+  grid-column: 2;
+  min-height: unset;
+}
+
+.offer-flow__vertical .offer-card:nth-child(2) {
+  grid-row: 1;
+}
+
+.offer-flow__vertical .offer-card:nth-child(3) {
+  grid-row: 2;
+}
+
+.offer-flow__vertical .offer-card:nth-child(4) {
+  grid-row: 3;
+}
+
+.offer-flow__vtrack {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 39, 205, 0.35),
+    rgba(197, 24, 212, 0.5),
+    rgba(180, 69, 255, 0.35)
+  );
+}
+
+.offer-flow__mover--v {
+  left: 50%;
+  margin-left: -6px;
+  margin-top: 0;
+  top: calc((100% - 2 * 0.75rem) / 6);
+  animation: offerMoverV 7s ease-in-out infinite;
+}
+
+@keyframes offerMoverV {
+  0%,
+  10% {
+    top: calc((100% - 2 * 0.75rem) / 6);
+  }
+  30%,
+  38% {
+    top: 50%;
+  }
+  58%,
+  66% {
+    top: calc((250% + 0.75rem) / 3);
+  }
+  86%,
+  94% {
+    top: 50%;
+  }
+  100% {
+    top: calc((100% - 2 * 0.75rem) / 6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .offer-flow__mover {
+    animation: none;
+  }
+
+  .offer-card:hover {
+    transform: none;
+  }
+
+  .offer-flow__mover--h {
+    left: 50%;
+  }
+
+  .offer-flow__mover--v {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
