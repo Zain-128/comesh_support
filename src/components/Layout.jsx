@@ -1,4 +1,12 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
+import AnimatedOutlet from "./AnimatedOutlet";
+import {
+  headerReveal,
+  logoMarkSpring,
+  navItem,
+  navStagger,
+} from "../motion/variants";
 import "./Layout.css";
 
 const nav = [
@@ -11,38 +19,67 @@ const nav = [
 export default function Layout() {
   return (
     <div className="layout">
-      <header className="header">
+      <motion.header
+        className="header"
+        variants={headerReveal}
+        initial="hidden"
+        animate="visible"
+      >
         <div className="header__inner">
           <NavLink to="/about" className="logo" end>
-            <span className="logo__mark" aria-hidden />
+            <motion.span
+              className="logo__mark logo__mark--animated"
+              variants={logoMarkSpring}
+              initial="hidden"
+              animate="visible"
+              aria-hidden
+            />
             <span className="logo__text">Comesh</span>
           </NavLink>
-          <nav className="nav" aria-label="Main">
+          <motion.nav
+            className="nav"
+            aria-label="Main"
+            variants={navStagger}
+            initial="hidden"
+            animate="visible"
+          >
             {nav.map(({ to, label }) => (
-              <NavLink
+              <motion.div
                 key={to}
-                to={to}
-                className={({ isActive }) =>
-                  "nav__link" + (isActive ? " nav__link--active" : "")
-                }
+                variants={navItem}
+                className="nav__item"
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
               >
-                {label}
-              </NavLink>
+                <NavLink
+                  to={to}
+                  className={({ isActive }) =>
+                    "nav__link" + (isActive ? " nav__link--active" : "")
+                  }
+                >
+                  {label}
+                </NavLink>
+              </motion.div>
             ))}
-          </nav>
+          </motion.nav>
         </div>
-        <div className="header__accent" aria-hidden />
-      </header>
+        <div className="header__accent header__accent--animated" aria-hidden />
+      </motion.header>
 
       <main className="main">
-        <Outlet />
+        <AnimatedOutlet />
       </main>
 
-      <footer className="footer">
+      <motion.footer
+        className="footer"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.35, duration: 0.5 }}
+      >
         <p className="footer__note">
           © {new Date().getFullYear()} Comesh. All rights reserved.
         </p>
-      </footer>
+      </motion.footer>
     </div>
   );
 }

@@ -1,6 +1,15 @@
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { getApiBaseUrl } from "../api/config";
+import { easeOut, fadeUpChild, staggerParent } from "../motion/variants";
 import "./Contact.css";
+
+const bannerMotion = {
+  initial: { opacity: 0, y: -12, scale: 0.98 },
+  animate: { opacity: 1, y: 0, scale: 1 },
+  exit: { opacity: 0, y: -8 },
+  transition: { duration: 0.35, ease: easeOut },
+};
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -41,25 +50,47 @@ export default function Contact() {
   }
 
   return (
-    <>
-      <h1 className="page-title">Contact us</h1>
-      <p className="page-lead">
+    <motion.div
+      variants={staggerParent}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.h1 variants={fadeUpChild} className="page-title">
+        Contact us
+      </motion.h1>
+      <motion.p variants={fadeUpChild} className="page-lead">
         Send us a message — we read every submission and will get back when
         appropriate.
-      </p>
+      </motion.p>
 
-      {status === "success" && (
-        <div className="contact-banner contact-banner--success" role="status">
-          Thanks — your message has been sent.
-        </div>
-      )}
-      {status === "error" && errorText && (
-        <div className="contact-banner contact-banner--error" role="alert">
-          {errorText}
-        </div>
-      )}
+      <AnimatePresence mode="popLayout">
+        {status === "success" && (
+          <motion.div
+            key="success"
+            className="contact-banner contact-banner--success"
+            role="status"
+            {...bannerMotion}
+          >
+            Thanks — your message has been sent.
+          </motion.div>
+        )}
+        {status === "error" && errorText && (
+          <motion.div
+            key="error"
+            className="contact-banner contact-banner--error"
+            role="alert"
+            {...bannerMotion}
+          >
+            {errorText}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <form className="contact-form content-block" onSubmit={handleSubmit}>
+      <motion.form
+        variants={fadeUpChild}
+        className="contact-form content-block"
+        onSubmit={handleSubmit}
+      >
         <label className="contact-field">
           <span className="contact-label">Name</span>
           <input
@@ -112,14 +143,16 @@ export default function Contact() {
             placeholder="How can we help?"
           />
         </label>
-        <button
+        <motion.button
           type="submit"
           className="contact-submit"
           disabled={status === "loading"}
+          whileHover={status === "loading" ? undefined : { scale: 1.03 }}
+          whileTap={status === "loading" ? undefined : { scale: 0.98 }}
         >
           {status === "loading" ? "Sending…" : "Send message"}
-        </button>
-      </form>
-    </>
+        </motion.button>
+      </motion.form>
+    </motion.div>
   );
 }

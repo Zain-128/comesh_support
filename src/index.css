@@ -74,6 +74,30 @@ li {
   margin-bottom: 1.5rem;
   box-shadow: var(--shadow-glow);
   backdrop-filter: blur(8px);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .content-block:hover {
+    transform: translateY(-2px);
+    border-color: rgba(197, 24, 212, 0.35);
+    box-shadow:
+      var(--shadow-glow),
+      0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-block {
+    transition: none;
+  }
+
+  .content-block:hover {
+    transform: none;
+  }
 }
 
 @media (min-width: 640px) {

@@ -1,14 +1,25 @@
+import { motion } from "framer-motion";
+import { fadeUpChild, staggerParent } from "../motion/variants";
+
 export default function Privacy() {
   return (
-    <>
-      <h1 className="page-title">Privacy policy</h1>
-      <p className="last-updated">Last updated: April 1, 2026</p>
-      <p className="page-lead">
+    <motion.div
+      variants={staggerParent}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.h1 variants={fadeUpChild} className="page-title">
+        Privacy policy
+      </motion.h1>
+      <motion.p variants={fadeUpChild} className="last-updated">
+        Last updated: April 1, 2026
+      </motion.p>
+      <motion.p variants={fadeUpChild} className="page-lead">
         This policy describes how Comesh collects, uses, and shares information. Replace
         with counsel-approved text that matches your actual data practices.
-      </p>
+      </motion.p>
 
-      <section className="content-block">
+      <motion.section variants={fadeUpChild} className="content-block">
         <h2>1. Who we are</h2>
         <p>
           Comesh (&quot;we&quot;, &quot;us&quot;) operates the Comesh mobile application
@@ -107,7 +118,7 @@ export default function Privacy() {
           For privacy questions or requests, contact us through the channels provided in
           the Comesh app or your official privacy contact email.
         </p>
-      </section>
-    </>
+      </motion.section>
+    </motion.div>
   );
 }

@@ -1,0 +1,78 @@
+/* Ambient background + accents — respects prefers-reduced-motion */
+
+@keyframes bgPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes logoGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 16px rgba(197, 24, 212, 0.45);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(197, 24, 212, 0.65),
+      0 0 40px rgba(100, 66, 255, 0.2);
+  }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 90% 60% at 15% 20%, rgba(197, 24, 212, 0.09), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 85% 80%, rgba(8, 39, 205, 0.1), transparent 50%);
+  animation: bgPulse 14s ease-in-out infinite;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+.header__accent--animated {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-secondary) 10%,
+    var(--color-primary) 45%,
+    var(--color-primary-light) 75%,
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 8s linear infinite;
+}
+
+.logo__mark--animated {
+  animation: logoGlow 3.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  .header__accent--animated,
+  .logo__mark--animated {
+    animation: none;
+  }
+
+  body::before {
+    opacity: 0.85;
+  }
+}

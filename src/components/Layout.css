@@ -50,6 +50,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem 1rem;
+  align-items: flex-end;
+}
+
+.nav__item {
+  display: inline-flex;
 }
 
 .nav__link {
