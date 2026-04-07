@@ -21,8 +21,8 @@
   padding: 0.75rem 1rem;
   font: inherit;
   font-size: 0.95rem;
-  color: var(--color-on-primary);
-  background: rgba(28, 32, 59, 0.6);
+  color: var(--color-heading);
+  background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
   border-radius: 12px;
   outline: none;
@@ -99,13 +99,13 @@
 }
 
 .contact-banner--success {
-  background: rgba(0, 130, 5, 0.12);
+  background: rgba(0, 130, 5, 0.1);
   border-color: rgba(0, 130, 5, 0.35);
-  color: #8fef9a;
+  color: #0d5c1a;
 }
 
 .contact-banner--error {
-  background: rgba(230, 4, 4, 0.12);
+  background: rgba(230, 4, 4, 0.08);
   border-color: rgba(230, 4, 4, 0.35);
-  color: #ffb4b4;
+  color: #b91c1c;
 }

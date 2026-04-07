@@ -19,9 +19,9 @@ body {
   color: var(--color-body);
   background: var(--color-bg);
   background-image:
-    radial-gradient(ellipse 100% 70% at 50% -15%, rgba(197, 24, 212, 0.12), transparent 55%),
-    radial-gradient(ellipse 60% 45% at 100% 100%, rgba(8, 39, 205, 0.1), transparent 50%),
-    linear-gradient(180deg, #1c203b 0%, #15192e 100%);
+    radial-gradient(ellipse 100% 70% at 50% -15%, rgba(197, 24, 212, 0.08), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 100% 100%, rgba(8, 39, 205, 0.06), transparent 50%),
+    linear-gradient(180deg, #f6f8fc 0%, #eef1f7 100%);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -36,7 +36,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary-extra);
+  color: var(--color-primary);
 }
 
 h1,
@@ -45,7 +45,7 @@ h3 {
   font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.22;
-  color: var(--color-on-primary);
+  color: var(--color-heading);
 }
 
 p {
@@ -95,7 +95,7 @@ li::marker {
   letter-spacing: -0.035em;
   line-height: 1.15;
   margin: 0 0 0.65rem;
-  color: #f4f6f9;
+  color: var(--color-heading);
 }
 
 .page-lead {
@@ -126,7 +126,7 @@ li::marker {
     border-color: rgba(197, 24, 212, 0.28);
     box-shadow:
       var(--shadow-card),
-      0 12px 36px rgba(0, 0, 0, 0.18);
+      0 12px 36px rgba(15, 23, 42, 0.1);
   }
 
   .legal-page .content-block:hover {
@@ -168,7 +168,7 @@ li::marker {
   margin: 0 0 0.65rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--color-border-subtle);
-  color: #e8e9ed;
+  color: var(--color-heading);
   letter-spacing: -0.02em;
 }
 
@@ -180,6 +180,6 @@ li::marker {
   font-size: 0.95rem;
   font-weight: 600;
   margin: 1.35rem 0 0.45rem;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--color-heading);
   letter-spacing: -0.015em;
 }
